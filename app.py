@@ -21,7 +21,7 @@ if __name__ == '__main__':
 @app.route ('/reservations')
 def reservations():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM reservationsTable")
+    cur.execute("SELECT * FROM reservations_table")
     data = cur.fetchall()
     return str(data) + '\n'
 
@@ -38,7 +38,7 @@ def reserve():
         status = '확정'
 
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO reservationsTable (name, email, phone, seats, seat_info, datetime, status) VALUES (%s, %s, %s, %s, %s, %s, %s)", (name, email, phone, seats, seat_info, datetime, status))
+        cur.execute("INSERT INTO reservations_table (name, email, phone, seats, seat_info, datetime, status) VALUES (%s, %s, %s, %s, %s, %s, %s)", (name, email, phone, seats, seat_info, datetime, status))
         mysql.connection.commit()
         cur.close()
         return 'Reservation created successfully!\n', 201

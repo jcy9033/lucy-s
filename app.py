@@ -22,12 +22,4 @@ def reservations():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM reservationsTable")
     data = cur.fetchall()
-    return str(data)
-
-# @app.route('/reservations')
-# def reservations():
-#     cur = mysql.connection.cursor()
-#     cur.execute("SELECT * FROM reservationsTable")
-#     data = cur.fetchall()
-#     result = '\n'.join(map(str, data))
-#     return result
+    return str(data) + '\n'

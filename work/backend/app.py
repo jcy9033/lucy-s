@@ -10,13 +10,12 @@ app.config['MYSQL_DB'] = 'lucys'
 
 mysql = MySQL(app)
 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True) # Debug mode enabled
+
 @app.route ('/')
 def home():
     return 'Hello World!' + '\n'
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True) # Debug mode enabled
 
 # All Reservation history inquiry
 @app.route ('/reservations')
@@ -24,6 +23,8 @@ def reservations():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM reservations_table")
     data = cur.fetchall()
+    mysql.connection.commit()
+    cur.close()
     return str(data) + '\n'
 
 # Reserve
@@ -39,7 +40,13 @@ def reserve():
         datetime = request_data['datetime']
         status = '확정'
 
+        # Check if the seat is already reserved
         cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM reservations_table WHERE datetime = %s AND seat_info = %s", (datetime, seat_info))
+        if cur.fetchone():
+            return 'Seat already reserved for this date and time.\n', 400
+        
+        # Insert new reservation
         cur.execute("INSERT INTO reservations_table (name, email, phone, seats, seat_info, datetime, status) VALUES (%s, %s, %s, %s, %s, %s, %s)", (name, email, phone, seats, seat_info, datetime, status))
         mysql.connection.commit()
         cur.close()
@@ -50,14 +57,17 @@ def reserve():
         return 'Error in reservations\n', 400
 
 # Reservation history inquiry with Email
-@app.route('/reservations', methods=['GET'])
+@app.route('/reservations/email', methods=['GET'])
 def get_reservations():
     try:
         email = request.args.get('email')
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM reservations_table WHERE email = %s", [email])
+        data = cur.fetchall()
+        mysql.connection.commit()
+        cur.close()
 
-        return str(reservations) + '\n', 200 # Check point. reservations()
+        return str(data) + '\n', 200 # Check point. reservations()
     
     except Exception as e:
         print(e)

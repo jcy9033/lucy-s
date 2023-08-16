@@ -18,6 +18,7 @@ def home():
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True) # Debug mode enabled
 
+# All Reservation history inquiry
 @app.route ('/reservations')
 def reservations():
     cur = mysql.connection.cursor()
@@ -25,6 +26,7 @@ def reservations():
     data = cur.fetchall()
     return str(data) + '\n'
 
+# Reserve
 @app.route ('/reserve', methods=['POST'])
 def reserve():
     try:
@@ -46,3 +48,17 @@ def reserve():
     except Exception as e:
         print(e)
         return 'Error in reservations\n', 400
+
+# Reservation history inquiry with Email
+@app.route('/reservations', methods=['GET'])
+def get_reservations():
+    try:
+        email = request.args.get('email')
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM reservations_table WHERE email = %s", [email])
+
+        return str(reservations) + '\n', 200 # Check point. reservations()
+    
+    except Exception as e:
+        print(e)
+        return 'Error in retrieving reservations' + '\n', 400

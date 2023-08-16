@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
@@ -23,3 +24,25 @@ def reservations():
     cur.execute("SELECT * FROM reservationsTable")
     data = cur.fetchall()
     return str(data) + '\n'
+
+@app.route ('/reserve', methods=['POST'])
+def reserve():
+    try:
+        request_data = request.get_json()
+        name = request_data['name']
+        email = request_data['email']
+        phone = request_data['phone']
+        seats = request_data['seats']
+        seat_info = request_data['seat_info']
+        datetime = request_data['datetime']
+        status = '확정'
+
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO reservationsTable (name, email, phone, seats, seat_info, datetime, status) VALUES (%s, %s, %s, %s, %s, %s, %s)", (name, email, phone, seats, seat_info, datetime, status))
+        mysql.connection.commit()
+        cur.close()
+        return 'Reservation created successfully!\n', 201
+
+    except Exception as e:
+        print(e)
+        return 'Error in reservations\n', 400

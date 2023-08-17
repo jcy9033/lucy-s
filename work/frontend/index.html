@@ -1,62 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lucy's reservation forms</title>
     <style>
-        #reservation-container {
-            display: flex;
-        }
-        #form-container, #status-container {
-            width: 50%;
-        }
-    </style>
-</head>
-<script>
-    function fetchReservations() {
-        fetch('/reservations')
-            .then(response => response.json())
-            .then(data => {
-                const statusList = document.getElementById('status-list');
-                statusList.innerHTML = '';
-                data.forEach(reservation => {
-                    const reservationDiv = document.createElement('div');
-                    reservationDiv.textContent = `이름: ${reservation.name}, 이메일: ${reservation.email}, 좌석: ${reservation.seat_info}, 날짜: ${reservation.datetime}`;
-                    statusList.appendChild(reservationDiv);
-                });
-            })
-            .catch(error => console.error('Error fetching reservations:', error));
-    }
+      #reservation-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
 
-    // 페이지 로드 시 예약 현황 가져오기
-    window.onload = fetchReservations;
-</script>
-<body>
+      #form-container {
+        display: none;
+        position: relative;
+        clear: both;
+        width: 100%;
+      }
+
+      #status-container {
+        width: 100%;
+      }
+
+      #seats-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      #status-list {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .row {
+        width: 100%;
+        clear: both;
+      }
+
+      .seat {
+        width: 2cm;
+        height: 2cm; /* 정사각형이니까 높이도 10cm */
+        background-color: #00aaff;
+        box-sizing: border-box;
+        margin: 1%;
+        position: relative;
+      }
+
+      .seat::before {
+        content: "OK"; /* 텍스트 변경 가능 */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff; /* 텍스트 색상 */
+      }
+
+      .close-button {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        background-color: #f00;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      .close-button:hover {
+        background-color: #c00;
+      }
+    </style>
+  </head>
+  <script src="script.js"></script>
+  <body>
     <div id="reservation-container">
+      <div id="status-container">
+        <h2>예약 현황</h2>
+        <div id="status-list">
+          <div class="row">
+            <div class="seat" onclick="showForm('Table 1')"></div>
+            <div class="seat" onclick="showForm('Table 2')"></div>
+            <div class="seat" onclick="showForm('Table 3')"></div>
+            <div class="seat" onclick="showForm('Table 4')"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div id="form-container">
-            <form action="/submit_reservation" method="POST">
-                <label for="name">이름:</label>
-                <input type="text" id="name" name="name" required><br>
-                <label for="email">이메일:</label>
-                <input type="email" id="email" name="email" required><br>
-                <label for="phone">전화번호:</label>
-                <input type="text" id="phone" name="phone" required><br>
-                <label for="seats">좌석 수:</label>
-                <input type="number" id="seats" name="seats" required><br>
-                <label for="seat_info">좌석 정보:</label>
-                <input type="text" id="seat_info" name="seat_info" required><br>
-                <label for="datetime">날짜 및 시간:</label>
-                <input type="datetime-local" id="datetime" name="datetime" required><br>
-                <input type="submit" value="예약 확정">
-            </form>
+          <button onclick="closeForm()" class="close-button">닫기</button>
+          <form action="/submit_reservation" method="POST">
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" required /><br />
+            <label for="email">이메일:</label>
+            <input type="email" id="email" name="email" required /><br />
+            <label for="phone">전화번호:</label>
+            <input type="text" id="phone" name="phone" required /><br />
+            <label for="seats">좌석 수:</label>
+            <input type="number" id="seats" name="seats" required /><br />
+            <label for="seat_info">좌석 정보:</label>
+            <input type="text" id="seat_info" name="seat_info" required /><br />
+            <label for="datetime">날짜 및 시간:</label>
+            <input
+              type="datetime-local"
+              id="datetime"
+              name="datetime"
+              required
+            /><br />
+            <input type="submit" value="예약 확정" />
+          </form>
         </div>
-        <div id="status-container">
-            <h2>예약 현황</h2>
-            <div id="status-list">
-                <!-- 여기에 예약 현황을 나열 -->
-            </div>
-        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

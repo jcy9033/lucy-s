@@ -16,3 +16,10 @@ function updateTimestamp() {
 updateTimestamp();
 
 setInterval(updateTimestamp, 60000); // 60000 milliseconds = 1 minute
+
+
+document.querySelectorAll('.table-box-button').forEach(button => {
+  button.addEventListener('click', () => {
+    window.location.href = 'reservation-form.html';
+  })
+})

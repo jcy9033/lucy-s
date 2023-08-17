@@ -44,21 +44,25 @@
         border: 1px solid black;
         border-radius: 4px;
       }
-      .tables {
+      .tables-layer1,
+      .tables-layer2,
+      .tables-layer3 {
         display: flex;
         margin: 20px;
-        height: auto;
       }
-      .table-item {
+      .table-box {
         border: 1px solid black;
         border-radius: 4px;
         margin-top: 10px;
         margin-left: 20px;
         margin-bottom: 10px;
         width: 200px;
-        height: 200px;
+        height: 100px;
       }
-      .table-item-button {
+      .reserved-table {
+        background-color: #ffb6c1;
+      }
+      .table-box-button {
         width: 20px;
         height: 10px;
       }
@@ -70,7 +74,7 @@
     </style>
   </head>
   <body>
-    <div class="header">Lucy's regervation form</div>
+    <div class="header">Lucy's reservation - Tokyo</div>
     <div class="nav">
       <div class="nav-right-items">
         <div class="nav-item">Tokyo</div>
@@ -87,22 +91,70 @@
       </div>
       <div class="dashboard">
         Green indicates available seats, while red indicates unavailable seats.
-        <div class="tables">
-          <div class="table-item">
+        <div class="tables-layer1">
+          <div class="table-box reserved-table">
             table-1
-            <button class="table-item-button">Click</button>
+            <button class="table-box-button"></button>
           </div>
-          <div class="table-item">
+          <div class="table-box reserved-table">
             table-2
-            <button class="table-item-button">Click</button>
+            <button class="table-box-button"></button>
           </div>
-          <div class="table-item">
+          <div class="table-box">
             table-3
-            <button class="table-item-button">Click</button>
+            <button class="table-box-button"></button>
           </div>
-          <div class="table-item">
+          <div class="table-box">
             table-4
-            <button class="table-item-button">Click</button>
+            <button class="table-box-button"></button>
+          </div>
+          <div class="table-box">
+            table-5
+            <button class="table-box-button"></button>
+          </div>
+        </div>
+        <div class="tables-layer2">
+          <div class="table-box">
+            table-6
+            <button class="table-box-button"></button>
+          </div>
+          <div class="table-box">
+            table-7
+            <button class="table-box-button"></button>
+          </div>
+          <div class="table-box">
+            table-8
+            <button class="table-box-button"></button>
+          </div>
+          <div class="table-box">
+            table-9
+            <button class="table-box-button"></button>
+          </div>
+          <div class="table-box">
+            table-10
+            <button class="table-box-button"></button>
+          </div>
+        </div>
+        <div class="tables-layer3">
+          <div class="table-box">
+            table-11
+            <button class="table-box-button"></button>
+          </div>
+          <div class="table-box">
+            table-12
+            <button class="table-box-button"></button>
+          </div>
+          <div class="table-box">
+            table-13
+            <button class="table-box-button"></button>
+          </div>
+          <div class="table-box">
+            table-14
+            <button class="table-box-button"></button>
+          </div>
+          <div class="table-box">
+            table-15
+            <button class="table-box-button"></button>
           </div>
         </div>
       </div>

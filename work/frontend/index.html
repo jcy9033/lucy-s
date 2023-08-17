@@ -1,117 +1,113 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lucy's reservation forms</title>
+    <title>Document</title>
     <style>
-      #reservation-container {
+      .header {
         width: 100%;
+        height: auto;
+        border-bottom: 1px solid black;
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .nav {
+        height: 30px;
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        align-items: center;
+        font-size: 10px;
+        font-weight: bold;
       }
-
-      #form-container {
-        display: none;
-        position: relative;
-        clear: both;
-        width: 100%;
-      }
-
-      #status-container {
-        width: 100%;
-      }
-
-      #seats-container {
+      .nav-right-items {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        margin-left: auto;
       }
-
-      #status-list {
+      .nav-item {
+        margin-left: 20px;
+      }
+      .main {
+        text-align: center;
+        width: 800px;
+        margin: 0 auto;
+      }
+      .title {
+        font-size: 30px;
+        font-weight: bolder;
+      }
+      .subtitle {
+        font-size: smaller;
+        font-weight: 300;
+      }
+      .dashboard {
+        height: 70%;
+        margin-top: 30px;
+        border: 1px solid black;
+        border-radius: 4px;
+      }
+      .tables {
         display: flex;
-        justify-content: space-between;
+        margin: 20px;
+        height: auto;
       }
-
-      .row {
-        width: 100%;
-        clear: both;
+      .table-item {
+        border: 1px solid black;
+        border-radius: 4px;
+        margin-top: 10px;
+        margin-left: 20px;
+        margin-bottom: 10px;
+        width: 200px;
+        height: 200px;
       }
-
-      .seat {
-        width: 2cm;
-        height: 2cm; /* 정사각형이니까 높이도 10cm */
-        background-color: #00aaff;
-        box-sizing: border-box;
-        margin: 1%;
-        position: relative;
+      .table-item-button {
+        width: 20px;
+        height: 10px;
       }
-
-      .seat::before {
-        content: "OK"; /* 텍스트 변경 가능 */
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #fff; /* 텍스트 색상 */
-      }
-
-      .close-button {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        background-color: #f00;
-        color: #fff;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-      }
-
-      .close-button:hover {
-        background-color: #c00;
+      .timestamp {
+        margin-top: 3px;
+        margin-right: auto;
+        text-align: right;
       }
     </style>
   </head>
-  <script src="script.js"></script>
   <body>
-    <div id="reservation-container">
-      <div id="status-container">
-        <h2>예약 현황</h2>
-        <div id="status-list">
-          <div class="row">
-            <div class="seat" onclick="showForm('Table 1')"></div>
-            <div class="seat" onclick="showForm('Table 2')"></div>
-            <div class="seat" onclick="showForm('Table 3')"></div>
-            <div class="seat" onclick="showForm('Table 4')"></div>
+    <div class="header">Lucy's regervation form</div>
+    <div class="nav">
+      <div class="nav-right-items">
+        <div class="nav-item">Tokyo</div>
+        <div class="nav-item">Osaka</div>
+        <div class="nav-item">Nagoya</div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="title">Seats status</div>
+      <div class="subtitle">
+        The reserved seat status shows the availability of seats on the selected
+        date. You can click on green seats to make an instant reservation, with
+        options for cancellations and changes.
+      </div>
+      <div class="dashboard">
+        Green indicates available seats, while red indicates unavailable seats.
+        <div class="tables">
+          <div class="table-item">
+            table-1
+            <button class="table-item-button">Click</button>
+          </div>
+          <div class="table-item">
+            table-2
+            <button class="table-item-button">Click</button>
+          </div>
+          <div class="table-item">
+            table-3
+            <button class="table-item-button">Click</button>
+          </div>
+          <div class="table-item">
+            table-4
+            <button class="table-item-button">Click</button>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div id="form-container">
-          <button onclick="closeForm()" class="close-button">닫기</button>
-          <form action="/submit_reservation" method="POST">
-            <label for="name">이름:</label>
-            <input type="text" id="name" name="name" required /><br />
-            <label for="email">이메일:</label>
-            <input type="email" id="email" name="email" required /><br />
-            <label for="phone">전화번호:</label>
-            <input type="text" id="phone" name="phone" required /><br />
-            <label for="seats">좌석 수:</label>
-            <input type="number" id="seats" name="seats" required /><br />
-            <label for="seat_info">좌석 정보:</label>
-            <input type="text" id="seat_info" name="seat_info" required /><br />
-            <label for="datetime">날짜 및 시간:</label>
-            <input
-              type="datetime-local"
-              id="datetime"
-              name="datetime"
-              required
-            /><br />
-            <input type="submit" value="예약 확정" />
-          </form>
-        </div>
-      </div>
+      <div class="timestamp" id="timestamp"></div>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -33,14 +33,24 @@
       .title {
         font-size: 30px;
         font-weight: bolder;
+        margin-bottom: 10px;
       }
       .subtitle {
         font-size: smaller;
         font-weight: 300;
       }
+      .timestamp {
+        margin-top: 20px;
+        text-align: left;
+        font-weight: bold;
+      }
+      .date-selector {
+        margin-top: 15px;
+        text-align: left;
+      }
       .dashboard {
-        height: 70%;
-        margin-top: 30px;
+        height: auto 70%;
+        margin-top: 10px;
         border: 1px solid black;
         border-radius: 4px;
       }
@@ -65,11 +75,18 @@
       .table-box-button {
         width: 20px;
         height: 10px;
+        border-radius: 25%;
       }
-      .timestamp {
-        margin-top: 3px;
-        margin-right: auto;
-        text-align: right;
+      .tables-layout {
+        margin-bottom: 20px;
+        font-size: x-large;
+        font-weight: bold;
+      }
+      .layout-img {
+        margin-top: 20px;
+        max-width: 95%;
+        border: 1px solid black;
+        border-radius: 10px;
       }
     </style>
   </head>
@@ -83,12 +100,18 @@
       </div>
     </div>
     <div class="main">
-      <div class="title">Seats status</div>
+      <div class="title">Reservation Status Board</div>
       <div class="subtitle">
         The reserved seat status shows the availability of seats on the selected
         date. You can click on green seats to make an instant reservation, with
         options for cancellations and changes.
       </div>
+      <div class="date-selector">
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date" />
+        <button id="show-reservations">Click me</button>
+      </div>
+      <div class="timestamp" id="timestamp"></div>
       <div class="dashboard">
         Green indicates available seats, while red indicates unavailable seats.
         <div class="tables-layer1">
@@ -157,8 +180,15 @@
             <button class="table-box-button"></button>
           </div>
         </div>
+        <div class="tables-layout">
+          Layout
+          <img
+            src="img/layout.jpg"
+            alt="Website layout design"
+            class="layout-img"
+          />
+        </div>
       </div>
-      <div class="timestamp" id="timestamp"></div>
     </div>
     <script src="script.js"></script>
   </body>

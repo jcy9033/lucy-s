@@ -69,15 +69,19 @@
         width: 200px;
         height: 100px;
       }
-      .reserved-table {
-        background-color: #ffb6c1;
-      }
-      .table-box-button {
-        width: 20px;
-        height: 10px;
+      .table-checkbox {
+        width: 15px;
+        height: 15px;
         border-radius: 25%;
       }
+      .reserved-table-box {
+        background-color: #ffb6c1;
+      }
+      .reserve-details {
+        margin-bottom: 10px;
+      }
       .tables-layout {
+        margin-top: 50px;
         margin-bottom: 20px;
         font-size: x-large;
         font-weight: bold;
@@ -99,6 +103,7 @@
         <div class="nav-item">Nagoya</div>
       </div>
     </div>
+    <!-- TEST SECTION -->
     <div class="main">
       <div class="title">Reservation Status Board</div>
       <div class="subtitle">
@@ -115,71 +120,75 @@
       <div class="dashboard">
         Green indicates available seats, while red indicates unavailable seats.
         <div class="tables-layer1">
-          <div class="table-box reserved-table">
+          <div class="table-box reserved-table-box">
             table-1
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
-          <div class="table-box reserved-table">
+          <div class="table-box reserved-table-box">
             table-2
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
           <div class="table-box">
             table-3
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
           <div class="table-box">
             table-4
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
           <div class="table-box">
             table-5
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
         </div>
         <div class="tables-layer2">
           <div class="table-box">
             table-6
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
           <div class="table-box">
             table-7
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
           <div class="table-box">
             table-8
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
           <div class="table-box">
             table-9
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
           <div class="table-box">
             table-10
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
         </div>
         <div class="tables-layer3">
           <div class="table-box">
             table-11
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
           <div class="table-box">
             table-12
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
           <div class="table-box">
             table-13
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
           <div class="table-box">
             table-14
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
           <div class="table-box">
             table-15
-            <button class="table-box-button"></button>
+            <input type="checkbox" class="table-checkbox" />
           </div>
         </div>
+        <div class="reserve-details">
+          Click the button below to reserve the selected table.
+        </div>
+        <button class="buttons">Reserve</button>
         <div class="tables-layout">
           Layout
           <img
